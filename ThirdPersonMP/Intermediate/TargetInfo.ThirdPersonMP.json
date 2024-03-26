@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "ThirdPersonMP",
+			"Path": "..\\Source\\ThirdPersonMP.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "ThirdPersonMPEditor",
+			"Path": "..\\Source\\ThirdPersonMPEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

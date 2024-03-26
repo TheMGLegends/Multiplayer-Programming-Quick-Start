@@ -1,0 +1,25 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\unrealeditor\\inc\\thirdpersonmp\\uht\\thirdpersonmpcharacter.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\x64\\thirdpersonmpeditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\thirdpersonmp\\definitions.thirdpersonmp.h",
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\source\\thirdpersonmp\\thirdpersonmpcharacter.h",
+            "b:\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
+            "b:\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
+            "b:\\epic games\\ue_5.3\\engine\\source\\runtime\\experimental\\iris\\core\\public\\iris\\serialization\\irisobjectreferencepackagemap.h",
+            "b:\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\iriscore\\uht\\irisobjectreferencepackagemap.generated.h",
+            "b:\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\charactermovementreplication.generated.h",
+            "b:\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\rootmotionsource.h",
+            "b:\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\rootmotionsource.generated.h",
+            "b:\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\character.generated.h",
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\unrealeditor\\inc\\thirdpersonmp\\uht\\thirdpersonmpcharacter.generated.h",
+            "b:\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\engine\\damageevents.h",
+            "b:\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\damageevents.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
