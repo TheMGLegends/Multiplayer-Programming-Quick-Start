@@ -54,5 +54,11 @@
     <ClInclude Include="..\..\Source\ThirdPersonMP\ThirdPersonMPGameMode.h">
       <Filter>Source\ThirdPersonMP</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\ThirdPersonMP\ThirdPersonMPProjectile.cpp">
+      <Filter>Source\ThirdPersonMP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ThirdPersonMP\ThirdPersonMPProjectile.h">
+      <Filter>Source\ThirdPersonMP</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
