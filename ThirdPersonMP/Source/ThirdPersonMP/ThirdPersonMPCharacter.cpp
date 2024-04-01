@@ -12,6 +12,7 @@
 #include "InputActionValue.h"
 #include "Net/UnrealNetwork.h"
 #include "Engine/Engine.h"
+#include "ThirdPersonMPProjectile.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -58,6 +59,13 @@ AThirdPersonMPCharacter::AThirdPersonMPCharacter()
 	// INFO: Initialize players' health
 	MaxHealth = 100.0f;
 	CurrentHealth = MaxHealth;
+
+	// INFO: Initialize projectile class
+	ProjectileClass = AThirdPersonMPProjectile::StaticClass();
+
+	// INFO: Initialize fire rate
+	FireRate = 0.25f;
+	bIsFiringWeapon = false;
 }
 
 void AThirdPersonMPCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -124,6 +132,9 @@ void AThirdPersonMPCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 	{
 		UE_LOG(LogTemplateCharacter, Error, TEXT("'%s' Failed to find an Enhanced Input component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."), *GetNameSafe(this));
 	}
+
+	// INFO: Handle firing projectiles
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AThirdPersonMPCharacter::StartFire);
 }
 
 void AThirdPersonMPCharacter::OnRep_CurrentHealth()
@@ -154,6 +165,34 @@ void AThirdPersonMPCharacter::OnHealthUpdate()
 	}
 
 	// INFO: All Machines Functionality
+}
+
+void AThirdPersonMPCharacter::StartFire()
+{
+	if (!bIsFiringWeapon)
+	{
+		bIsFiringWeapon = true;
+		UWorld* World = GetWorld();
+		World->GetTimerManager().SetTimer(FiringTimer, this, &AThirdPersonMPCharacter::StopFire, FireRate, false);
+		HandleFire();
+	}
+}
+
+void AThirdPersonMPCharacter::StopFire()
+{
+	bIsFiringWeapon = false;
+}
+
+void AThirdPersonMPCharacter::HandleFire_Implementation()
+{
+	FVector spawnLocation = GetActorLocation() + (GetActorRotation().Vector() * 100.0f) + (GetActorUpVector() * 50.0f);
+	FRotator spawnRotation = GetActorRotation();
+
+	FActorSpawnParameters spawnParameters;
+	spawnParameters.Instigator = GetInstigator();
+	spawnParameters.Owner = this;
+
+	AThirdPersonMPProjectile* spawnedProjectile = GetWorld()->SpawnActor<AThirdPersonMPProjectile>(spawnLocation, spawnRotation, spawnParameters);
 }
 
 void AThirdPersonMPCharacter::Move(const FInputActionValue& Value)

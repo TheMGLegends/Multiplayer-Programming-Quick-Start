@@ -10,6 +10,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 // Cross Module References
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	ENGINE_API UClass* Z_Construct_UClass_AController_NoRegister();
@@ -20,8 +21,30 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 	ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputMappingContext_NoRegister();
 	THIRDPERSONMP_API UClass* Z_Construct_UClass_AThirdPersonMPCharacter();
 	THIRDPERSONMP_API UClass* Z_Construct_UClass_AThirdPersonMPCharacter_NoRegister();
+	THIRDPERSONMP_API UClass* Z_Construct_UClass_AThirdPersonMPProjectile_NoRegister();
 	UPackage* Z_Construct_UPackage__Script_ThirdPersonMP();
 // End Cross Module References
+	DEFINE_FUNCTION(AThirdPersonMPCharacter::execHandleFire)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->HandleFire_Implementation();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(AThirdPersonMPCharacter::execStopFire)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->StopFire();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(AThirdPersonMPCharacter::execStartFire)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->StartFire();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AThirdPersonMPCharacter::execOnRep_CurrentHealth)
 	{
 		P_FINISH;
@@ -62,14 +85,22 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 		*(float*)Z_Param__Result=P_THIS->GetMaxHealth();
 		P_NATIVE_END;
 	}
+	static FName NAME_AThirdPersonMPCharacter_HandleFire = FName(TEXT("HandleFire"));
+	void AThirdPersonMPCharacter::HandleFire()
+	{
+		ProcessEvent(FindFunctionChecked(NAME_AThirdPersonMPCharacter_HandleFire),NULL);
+	}
 	void AThirdPersonMPCharacter::StaticRegisterNativesAThirdPersonMPCharacter()
 	{
 		UClass* Class = AThirdPersonMPCharacter::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "GetCurrentHealth", &AThirdPersonMPCharacter::execGetCurrentHealth },
 			{ "GetMaxHealth", &AThirdPersonMPCharacter::execGetMaxHealth },
+			{ "HandleFire", &AThirdPersonMPCharacter::execHandleFire },
 			{ "OnRep_CurrentHealth", &AThirdPersonMPCharacter::execOnRep_CurrentHealth },
 			{ "SetCurrentHealth", &AThirdPersonMPCharacter::execSetCurrentHealth },
+			{ "StartFire", &AThirdPersonMPCharacter::execStartFire },
+			{ "StopFire", &AThirdPersonMPCharacter::execStopFire },
 			{ "TakeDamage", &AThirdPersonMPCharacter::execTakeDamage },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -156,6 +187,34 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_AThirdPersonMPCharacter_HandleFire_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AThirdPersonMPCharacter_HandleFire_Statics::Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// INFO: Server function for spawning a projectile\n" },
+#endif
+		{ "ModuleRelativePath", "ThirdPersonMPCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "INFO: Server function for spawning a projectile" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AThirdPersonMPCharacter_HandleFire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AThirdPersonMPCharacter, nullptr, "HandleFire", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00280CC0, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AThirdPersonMPCharacter_HandleFire_Statics::Function_MetaDataParams), Z_Construct_UFunction_AThirdPersonMPCharacter_HandleFire_Statics::Function_MetaDataParams) };
+	UFunction* Z_Construct_UFunction_AThirdPersonMPCharacter_HandleFire()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AThirdPersonMPCharacter_HandleFire_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_AThirdPersonMPCharacter_OnRep_CurrentHealth_Statics
 	{
 #if WITH_METADATA
@@ -222,6 +281,64 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AThirdPersonMPCharacter_SetCurrentHealth_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AThirdPersonMPCharacter_StartFire_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AThirdPersonMPCharacter_StartFire_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Gameplay" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// INFO: Begins firing the weapon\n" },
+#endif
+		{ "ModuleRelativePath", "ThirdPersonMPCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "INFO: Begins firing the weapon" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AThirdPersonMPCharacter_StartFire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AThirdPersonMPCharacter, nullptr, "StartFire", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AThirdPersonMPCharacter_StartFire_Statics::Function_MetaDataParams), Z_Construct_UFunction_AThirdPersonMPCharacter_StartFire_Statics::Function_MetaDataParams) };
+	UFunction* Z_Construct_UFunction_AThirdPersonMPCharacter_StartFire()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AThirdPersonMPCharacter_StartFire_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AThirdPersonMPCharacter_StopFire_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AThirdPersonMPCharacter_StopFire_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Gameplay" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// INFO: Stops firing the weapon, enabling the player to use StartFire again\n" },
+#endif
+		{ "ModuleRelativePath", "ThirdPersonMPCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "INFO: Stops firing the weapon, enabling the player to use StartFire again" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AThirdPersonMPCharacter_StopFire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AThirdPersonMPCharacter, nullptr, "StopFire", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AThirdPersonMPCharacter_StopFire_Statics::Function_MetaDataParams), Z_Construct_UFunction_AThirdPersonMPCharacter_StopFire_Statics::Function_MetaDataParams) };
+	UFunction* Z_Construct_UFunction_AThirdPersonMPCharacter_StopFire()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AThirdPersonMPCharacter_StopFire_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -334,6 +451,14 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_CurrentHealth_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentHealth;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ProjectileClass_MetaData[];
+#endif
+		static const UECodeGen_Private::FClassPropertyParams NewProp_ProjectileClass;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_FireRate_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_FireRate;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -346,8 +471,11 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 	const FClassFunctionLinkInfo Z_Construct_UClass_AThirdPersonMPCharacter_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_AThirdPersonMPCharacter_GetCurrentHealth, "GetCurrentHealth" }, // 651412951
 		{ &Z_Construct_UFunction_AThirdPersonMPCharacter_GetMaxHealth, "GetMaxHealth" }, // 2328768396
+		{ &Z_Construct_UFunction_AThirdPersonMPCharacter_HandleFire, "HandleFire" }, // 3439138613
 		{ &Z_Construct_UFunction_AThirdPersonMPCharacter_OnRep_CurrentHealth, "OnRep_CurrentHealth" }, // 2630353802
 		{ &Z_Construct_UFunction_AThirdPersonMPCharacter_SetCurrentHealth, "SetCurrentHealth" }, // 3930060985
+		{ &Z_Construct_UFunction_AThirdPersonMPCharacter_StartFire, "StartFire" }, // 2720079669
+		{ &Z_Construct_UFunction_AThirdPersonMPCharacter_StopFire, "StopFire" }, // 1158746070
 		{ &Z_Construct_UFunction_AThirdPersonMPCharacter_TakeDamage, "TakeDamage" }, // 1587920501
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPCharacter_Statics::FuncInfo) < 2048);
@@ -457,6 +585,26 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_CurrentHealth = { "CurrentHealth", "OnRep_CurrentHealth", (EPropertyFlags)0x0020080100000020, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AThirdPersonMPCharacter, CurrentHealth), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_CurrentHealth_MetaData), Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_CurrentHealth_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_ProjectileClass_MetaData[] = {
+		{ "Category", "Gameplay|Projectile" },
+		{ "ModuleRelativePath", "ThirdPersonMPCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_ProjectileClass = { "ProjectileClass", nullptr, (EPropertyFlags)0x0024080000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AThirdPersonMPCharacter, ProjectileClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AThirdPersonMPProjectile_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_ProjectileClass_MetaData), Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_ProjectileClass_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_FireRate_MetaData[] = {
+		{ "Category", "Gameplay" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// INFO: The rate of fire for the weapon, also prevents an overflow of server functions from binding SpawnProjectile directly to input\n" },
+#endif
+		{ "ModuleRelativePath", "ThirdPersonMPCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "INFO: The rate of fire for the weapon, also prevents an overflow of server functions from binding SpawnProjectile directly to input" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_FireRate = { "FireRate", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AThirdPersonMPCharacter, FireRate), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_FireRate_MetaData), Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_FireRate_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AThirdPersonMPCharacter_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_CameraBoom,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_FollowCamera,
@@ -466,6 +614,8 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_LookAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_MaxHealth,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_CurrentHealth,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_ProjectileClass,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_FireRate,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AThirdPersonMPCharacter_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AThirdPersonMPCharacter>::IsAbstract,
@@ -510,15 +660,15 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AThirdPersonMPCharacter);
 	AThirdPersonMPCharacter::~AThirdPersonMPCharacter() {}
-	struct Z_CompiledInDeferFile_FID_Users_5CINCM67_Downloads_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics
+	struct Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_5CINCM67_Downloads_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AThirdPersonMPCharacter, AThirdPersonMPCharacter::StaticClass, TEXT("AThirdPersonMPCharacter"), &Z_Registration_Info_UClass_AThirdPersonMPCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AThirdPersonMPCharacter), 3376398647U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AThirdPersonMPCharacter, AThirdPersonMPCharacter::StaticClass, TEXT("AThirdPersonMPCharacter"), &Z_Registration_Info_UClass_AThirdPersonMPCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AThirdPersonMPCharacter), 1237886371U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_5CINCM67_Downloads_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_1289352410(TEXT("/Script/ThirdPersonMP"),
-		Z_CompiledInDeferFile_FID_Users_5CINCM67_Downloads_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_5CINCM67_Downloads_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_3809238375(TEXT("/Script/ThirdPersonMP"),
+		Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

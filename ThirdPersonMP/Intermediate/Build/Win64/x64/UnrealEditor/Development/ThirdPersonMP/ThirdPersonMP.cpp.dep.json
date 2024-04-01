@@ -1,12 +1,12 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "c:\\users\\5cincm67\\downloads\\multiplayer-programming-quick-start\\thirdpersonmp\\source\\thirdpersonmp\\thirdpersonmp.cpp",
+        "Source": "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\source\\thirdpersonmp\\thirdpersonmp.cpp",
         "ProvidedModule": "",
-        "PCH": "c:\\users\\5cincm67\\downloads\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\x64\\thirdpersonmpeditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "PCH": "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\x64\\thirdpersonmpeditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
         "Includes": [
-            "c:\\users\\5cincm67\\downloads\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\thirdpersonmp\\definitions.thirdpersonmp.h",
-            "c:\\users\\5cincm67\\downloads\\multiplayer-programming-quick-start\\thirdpersonmp\\source\\thirdpersonmp\\thirdpersonmp.h"
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\thirdpersonmp\\definitions.thirdpersonmp.h",
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\source\\thirdpersonmp\\thirdpersonmp.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

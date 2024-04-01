@@ -81,6 +81,30 @@ protected:
 	// INFO: Response to health being updated. Called on server immediately after modification, and on clients in response to a RepNotify
 	void OnHealthUpdate();
 
+	UPROPERTY(EditDefaultsOnly, Category = "Gameplay|Projectile")
+	TSubclassOf<class AThirdPersonMPProjectile> ProjectileClass;
+
+	// INFO: The rate of fire for the weapon, also prevents an overflow of server functions from binding SpawnProjectile directly to input
+	UPROPERTY(EditDefaultsOnly, Category = "Gameplay")
+	float FireRate;
+
+	bool bIsFiringWeapon;
+
+	// INFO: Begins firing the weapon
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	void StartFire();
+
+	// INFO: Stops firing the weapon, enabling the player to use StartFire again
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
+	void StopFire();
+
+	// INFO: Server function for spawning a projectile
+	UFUNCTION(Server, Reliable)
+	void HandleFire();
+
+	// INFO: Timer handle used for providing the fire rate delay in-between spawns
+	FTimerHandle FiringTimer;
+
 protected:
 
 	/** Called for movement input */
