@@ -59,9 +59,11 @@ AThirdPersonMPProjectile::AThirdPersonMPProjectile()
 	ProjectileMovementComponent->bRotationFollowsVelocity = true;
 	ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
 
-	// INFO: Initialize Damage Type and Damage Amount
+	// INFO: Initialize Variables
 	DamageType = UDamageType::StaticClass();
 	Damage = 10.0f;
+	ExplosionRadius = 500.0f;
+	bDebugMode = true;
 }
 
 // Called when the game starts or when spawned
@@ -74,14 +76,59 @@ void AThirdPersonMPProjectile::BeginPlay()
 void AThirdPersonMPProjectile::Destroyed()
 {
 	FVector spawnLocation = GetActorLocation();
+
+	// INFO: Spawn Particle Effect at the location of the projectile
 	UGameplayStatics::SpawnEmitterAtLocation(this, ExplosionEffect, spawnLocation, FRotator::ZeroRotator, true, EPSCPoolMethod::AutoRelease);
 }
 
 void AThirdPersonMPProjectile::OnProjectileImpact(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
+	/*
 	if (OtherActor)
 	{
 		UGameplayStatics::ApplyPointDamage(OtherActor, Damage, NormalImpulse, Hit, GetInstigator()->Controller, this, DamageType);
+	}
+	*/
+
+	// INFO: Create Sphere Trace to detect any actors within the explosion radius
+	TArray<FHitResult> hitResults;
+	FVector startLocation = GetActorLocation();
+	FVector endLocation = startLocation;
+
+	// INFO: We only want to detect pawns
+	FCollisionObjectQueryParams objectQueryParams  = FCollisionObjectQueryParams();
+	objectQueryParams.AddObjectTypesToQuery(ECC_Pawn);
+
+	// INFO: Create a sphere collision shape with a radius of ExplosionRadius
+	FCollisionShape collisionShape = FCollisionShape::MakeSphere(ExplosionRadius);
+
+	// INFO: Initialize a Set to store already hit actors
+	TSet<AActor*> hitActors;
+	
+	if (GetWorld()->SweepMultiByObjectType(hitResults, startLocation, endLocation, FQuat::Identity,objectQueryParams, collisionShape))
+	{
+		for (FHitResult hitResult : hitResults)
+		{
+			AActor* hitActor = hitResult.GetActor();
+
+			// INFO: Check if actor already hit (Prevents multiple hits on the same actor)
+			if (!hitActors.Contains(hitActor))
+			{
+				// INFO: Apply damage to any pawns within the explosion radius
+				UGameplayStatics::ApplyPointDamage(hitResult.GetActor(), Damage, NormalImpulse, hitResult, GetInstigator()->Controller, this, DamageType);
+
+				// INFO: Add actor to hit actors set
+				hitActors.Add(hitActor);
+			}
+			
+		}
+	}
+
+	// INFO: Debug the Sphere Sweep if Debug Mode is enabled
+	if (bDebugMode)
+	{
+		FVector sphereCentre = ((endLocation - startLocation) / 2) + startLocation;
+		DrawDebugSphere(GetWorld(), sphereCentre, collisionShape.GetSphereRadius(), 12, FColor::Red, false, 2.0f);
 	}
 
 	Destroy();

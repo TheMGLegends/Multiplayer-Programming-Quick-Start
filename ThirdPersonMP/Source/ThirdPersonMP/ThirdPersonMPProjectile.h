@@ -36,6 +36,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Damage")
 	float Damage;
 
+	// INFO: Radius of the explosion
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Damage")
+	float ExplosionRadius;
+
+	// INFO: Debug Mode Flag
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Debug")
+	bool bDebugMode;
+
 public:	
 	// Sets default values for this actor's properties
 	AThirdPersonMPProjectile();
