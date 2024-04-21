@@ -54,10 +54,30 @@ AThirdPersonMPProjectile::AThirdPersonMPProjectile()
 	// INFO: Definition for the Projectile Movement Component
 	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
 	ProjectileMovementComponent->SetUpdatedComponent(SphereComponent);
-	ProjectileMovementComponent->InitialSpeed = 1500.0f;
-	ProjectileMovementComponent->MaxSpeed = 1500.0f;
 	ProjectileMovementComponent->bRotationFollowsVelocity = true;
-	ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
+
+	// INFO: Randomize the Projectiles' Type
+	//RandomizeProjectileType();
+
+	ProjectileType = EProjectileType::Straight;
+	
+	// INFO: Different Projectile behaviour based on the Projectile Type
+    switch (ProjectileType)
+    {
+    case EProjectileType::Straight:
+		ProjectileMovementComponent->InitialSpeed = 1500.0f;
+		ProjectileMovementComponent->MaxSpeed = 1500.0f;
+		ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
+		break;
+    case EProjectileType::Homing:
+    	break;
+	case EProjectileType::Bouncing:
+		break;
+    case EProjectileType::Arcing:
+    	break;
+    default:
+    	break;
+    }
 
 	// INFO: Initialize Variables
 	DamageType = UDamageType::StaticClass();
@@ -132,6 +152,12 @@ void AThirdPersonMPProjectile::OnProjectileImpact(UPrimitiveComponent* HitCompon
 	}
 
 	Destroy();
+}
+
+void AThirdPersonMPProjectile::RandomizeProjectileType()
+{
+	// INFO: Randomize the Projectile Type
+	ProjectileType = static_cast<EProjectileType>(FMath::RandRange(0, EProjectileType::Max - 1));
 }
 
 // Called every frame

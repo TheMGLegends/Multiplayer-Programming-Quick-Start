@@ -23,8 +23,80 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPProjectile() {}
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 	THIRDPERSONMP_API UClass* Z_Construct_UClass_AThirdPersonMPProjectile();
 	THIRDPERSONMP_API UClass* Z_Construct_UClass_AThirdPersonMPProjectile_NoRegister();
+	THIRDPERSONMP_API UEnum* Z_Construct_UEnum_ThirdPersonMP_EProjectileType();
 	UPackage* Z_Construct_UPackage__Script_ThirdPersonMP();
 // End Cross Module References
+	static FEnumRegistrationInfo Z_Registration_Info_UEnum_EProjectileType;
+	static UEnum* EProjectileType_StaticEnum()
+	{
+		if (!Z_Registration_Info_UEnum_EProjectileType.OuterSingleton)
+		{
+			Z_Registration_Info_UEnum_EProjectileType.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_ThirdPersonMP_EProjectileType, (UObject*)Z_Construct_UPackage__Script_ThirdPersonMP(), TEXT("EProjectileType"));
+		}
+		return Z_Registration_Info_UEnum_EProjectileType.OuterSingleton;
+	}
+	template<> THIRDPERSONMP_API UEnum* StaticEnum<EProjectileType>()
+	{
+		return EProjectileType_StaticEnum();
+	}
+	struct Z_Construct_UEnum_ThirdPersonMP_EProjectileType_Statics
+	{
+		static const UECodeGen_Private::FEnumeratorParam Enumerators[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FEnumParams EnumParams;
+	};
+	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_ThirdPersonMP_EProjectileType_Statics::Enumerators[] = {
+		{ "Straight", (int64)Straight },
+		{ "Homing", (int64)Homing },
+		{ "Bouncing", (int64)Bouncing },
+		{ "Arcing", (int64)Arcing },
+		{ "Max", (int64)Max },
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_ThirdPersonMP_EProjectileType_Statics::Enum_MetaDataParams[] = {
+		{ "Arcing.DisplayName", "Arcing" },
+		{ "Arcing.Name", "Arcing" },
+		{ "BlueprintType", "true" },
+		{ "Bouncing.DisplayName", "Bouncing" },
+		{ "Bouncing.Name", "Bouncing" },
+		{ "Homing.DisplayName", "Homing" },
+		{ "Homing.Name", "Homing" },
+		{ "Max.Hidden", "" },
+		{ "Max.Name", "Max" },
+		{ "ModuleRelativePath", "ThirdPersonMPProjectile.h" },
+		{ "Straight.DisplayName", "Straight" },
+		{ "Straight.Name", "Straight" },
+	};
+#endif
+	const UECodeGen_Private::FEnumParams Z_Construct_UEnum_ThirdPersonMP_EProjectileType_Statics::EnumParams = {
+		(UObject*(*)())Z_Construct_UPackage__Script_ThirdPersonMP,
+		nullptr,
+		"EProjectileType",
+		"EProjectileType",
+		Z_Construct_UEnum_ThirdPersonMP_EProjectileType_Statics::Enumerators,
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		UE_ARRAY_COUNT(Z_Construct_UEnum_ThirdPersonMP_EProjectileType_Statics::Enumerators),
+		EEnumFlags::None,
+		(uint8)UEnum::ECppForm::Regular,
+		METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UEnum_ThirdPersonMP_EProjectileType_Statics::Enum_MetaDataParams), Z_Construct_UEnum_ThirdPersonMP_EProjectileType_Statics::Enum_MetaDataParams)
+	};
+	UEnum* Z_Construct_UEnum_ThirdPersonMP_EProjectileType()
+	{
+		if (!Z_Registration_Info_UEnum_EProjectileType.InnerSingleton)
+		{
+			UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_EProjectileType.InnerSingleton, Z_Construct_UEnum_ThirdPersonMP_EProjectileType_Statics::EnumParams);
+		}
+		return Z_Registration_Info_UEnum_EProjectileType.InnerSingleton;
+	}
+	DEFINE_FUNCTION(AThirdPersonMPProjectile::execRandomizeProjectileType)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->RandomizeProjectileType();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(AThirdPersonMPProjectile::execOnProjectileImpact)
 	{
 		P_GET_OBJECT(UPrimitiveComponent,Z_Param_HitComponent);
@@ -42,6 +114,7 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPProjectile() {}
 		UClass* Class = AThirdPersonMPProjectile::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "OnProjectileImpact", &AThirdPersonMPProjectile::execOnProjectileImpact },
+			{ "RandomizeProjectileType", &AThirdPersonMPProjectile::execRandomizeProjectileType },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -120,6 +193,29 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPProjectile() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_AThirdPersonMPProjectile_RandomizeProjectileType_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AThirdPersonMPProjectile_RandomizeProjectileType_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Projectile" },
+		{ "ModuleRelativePath", "ThirdPersonMPProjectile.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AThirdPersonMPProjectile_RandomizeProjectileType_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AThirdPersonMPProjectile, nullptr, "RandomizeProjectileType", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AThirdPersonMPProjectile_RandomizeProjectileType_Statics::Function_MetaDataParams), Z_Construct_UFunction_AThirdPersonMPProjectile_RandomizeProjectileType_Statics::Function_MetaDataParams) };
+	UFunction* Z_Construct_UFunction_AThirdPersonMPProjectile_RandomizeProjectileType()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AThirdPersonMPProjectile_RandomizeProjectileType_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(AThirdPersonMPProjectile);
 	UClass* Z_Construct_UClass_AThirdPersonMPProjectile_NoRegister()
 	{
@@ -165,6 +261,10 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPProjectile() {}
 #endif
 		static void NewProp_bDebugMode_SetBit(void* Obj);
 		static const UECodeGen_Private::FBoolPropertyParams NewProp_bDebugMode;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ProjectileType_MetaData[];
+#endif
+		static const UECodeGen_Private::FBytePropertyParams NewProp_ProjectileType;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -176,6 +276,7 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPProjectile() {}
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPProjectile_Statics::DependentSingletons) < 16);
 	const FClassFunctionLinkInfo Z_Construct_UClass_AThirdPersonMPProjectile_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_AThirdPersonMPProjectile_OnProjectileImpact, "OnProjectileImpact" }, // 2322368257
+		{ &Z_Construct_UFunction_AThirdPersonMPProjectile_RandomizeProjectileType, "RandomizeProjectileType" }, // 2223951831
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPProjectile_Statics::FuncInfo) < 2048);
 #if WITH_METADATA
@@ -295,6 +396,19 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPProjectile() {}
 		((AThirdPersonMPProjectile*)Obj)->bDebugMode = 1;
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_bDebugMode = { "bDebugMode", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AThirdPersonMPProjectile), &Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_bDebugMode_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_bDebugMode_MetaData), Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_bDebugMode_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_ProjectileType_MetaData[] = {
+		{ "Category", "Projectile" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// INFO: Projectile Type\n" },
+#endif
+		{ "ModuleRelativePath", "ThirdPersonMPProjectile.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "INFO: Projectile Type" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_ProjectileType = { "ProjectileType", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AThirdPersonMPProjectile, ProjectileType), Z_Construct_UEnum_ThirdPersonMP_EProjectileType, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_ProjectileType_MetaData), Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_ProjectileType_MetaData) }; // 3816828394
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AThirdPersonMPProjectile_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_SphereComponent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_StaticMesh,
@@ -304,6 +418,7 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPProjectile() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_Damage,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_ExplosionRadius,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_bDebugMode,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_ProjectileType,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AThirdPersonMPProjectile_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AThirdPersonMPProjectile>::IsAbstract,
@@ -340,13 +455,17 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPProjectile() {}
 	AThirdPersonMPProjectile::~AThirdPersonMPProjectile() {}
 	struct Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics
 	{
+		static const FEnumRegisterCompiledInInfo EnumInfo[];
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AThirdPersonMPProjectile, AThirdPersonMPProjectile::StaticClass, TEXT("AThirdPersonMPProjectile"), &Z_Registration_Info_UClass_AThirdPersonMPProjectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AThirdPersonMPProjectile), 965999580U) },
+	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics::EnumInfo[] = {
+		{ EProjectileType_StaticEnum, TEXT("EProjectileType"), &Z_Registration_Info_UEnum_EProjectileType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3816828394U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_2596834035(TEXT("/Script/ThirdPersonMP"),
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AThirdPersonMPProjectile, AThirdPersonMPProjectile::StaticClass, TEXT("AThirdPersonMPProjectile"), &Z_Registration_Info_UClass_AThirdPersonMPProjectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AThirdPersonMPProjectile), 3989368984U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_1192553791(TEXT("/Script/ThirdPersonMP"),
 		Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics::ClassInfo),
 		nullptr, 0,
-		nullptr, 0);
+		Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics::EnumInfo));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

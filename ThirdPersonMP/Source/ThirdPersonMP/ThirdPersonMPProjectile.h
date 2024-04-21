@@ -6,6 +6,17 @@
 #include "GameFramework/Actor.h"
 #include "ThirdPersonMPProjectile.generated.h"
 
+UENUM(BlueprintType)
+enum EProjectileType
+{
+	Straight UMETA(DisplayName = "Straight"),
+	Homing UMETA(DisplayName = "Homing"),
+	Bouncing UMETA(DisplayName = "Bouncing"),
+	Arcing UMETA(DisplayName = "Arcing"),
+
+	Max UMETA(Hidden)
+};
+
 UCLASS()
 class THIRDPERSONMP_API AThirdPersonMPProjectile : public AActor
 {
@@ -44,6 +55,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Debug")
 	bool bDebugMode;
 
+	// INFO: Projectile Type
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Projectile")
+	TEnumAsByte<EProjectileType> ProjectileType;
+
 public:	
 	// Sets default values for this actor's properties
 	AThirdPersonMPProjectile();
@@ -56,6 +71,9 @@ protected:
 
 	UFUNCTION(Category = "Projectile")
 	void OnProjectileImpact(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
+	UFUNCTION(BlueprintCallable, Category = "Projectile")
+	void RandomizeProjectileType();
 
 public:	
 	// Called every frame
