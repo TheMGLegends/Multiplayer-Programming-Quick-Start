@@ -59,6 +59,14 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Projectile")
 	TEnumAsByte<EProjectileType> ProjectileType;
 
+	// INFO: Radius of the homing projectile
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Projectile")
+	float HomingRadius;
+
+	// INFO: Number of bounces before projectile explodes
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Projectile")
+	int32 BounceCount;
+
 public:	
 	// Sets default values for this actor's properties
 	AThirdPersonMPProjectile();
@@ -78,5 +86,11 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+private:
+	void SetupStraightProjectile() const;
+	void SetupHomingProjectile() const;
+	void SetupBouncingProjectile() const;
+	void SetupArcingProjectile() const;
 
 };

@@ -56,41 +56,41 @@ AThirdPersonMPProjectile::AThirdPersonMPProjectile()
 	ProjectileMovementComponent->SetUpdatedComponent(SphereComponent);
 	ProjectileMovementComponent->bRotationFollowsVelocity = true;
 
-	// INFO: Randomize the Projectiles' Type
-	//RandomizeProjectileType();
-
-	ProjectileType = EProjectileType::Straight;
-	
-	// INFO: Different Projectile behaviour based on the Projectile Type
-    switch (ProjectileType)
-    {
-    case EProjectileType::Straight:
-		ProjectileMovementComponent->InitialSpeed = 1500.0f;
-		ProjectileMovementComponent->MaxSpeed = 1500.0f;
-		ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
-		break;
-    case EProjectileType::Homing:
-    	break;
-	case EProjectileType::Bouncing:
-		break;
-    case EProjectileType::Arcing:
-    	break;
-    default:
-    	break;
-    }
-
 	// INFO: Initialize Variables
-	DamageType = UDamageType::StaticClass();
-	Damage = 10.0f;
-	ExplosionRadius = 500.0f;
-	bDebugMode = true;
+    DamageType = UDamageType::StaticClass();
+    Damage = 10.0f;
+    ExplosionRadius = 500.0f;
+    bDebugMode = true;
+    HomingRadius = 1000.0f;
+	BounceCount = 5;
 }
 
 // Called when the game starts or when spawned
 void AThirdPersonMPProjectile::BeginPlay()
 {
 	Super::BeginPlay();
+
+	// INFO: Randomize the Projectiles' Type
+	RandomizeProjectileType();
 	
+	// INFO: Different Projectile behaviour based on the Projectile Type
+    switch (ProjectileType)
+    {
+    case EProjectileType::Straight:
+    	SetupStraightProjectile();
+		break;
+    case EProjectileType::Homing:
+    	SetupHomingProjectile();
+    	break;
+	case EProjectileType::Bouncing:
+		SetupBouncingProjectile();
+		break;
+    case EProjectileType::Arcing:
+    	SetupArcingProjectile();
+    	break;
+    default:
+    	break;
+    }
 }
 
 void AThirdPersonMPProjectile::Destroyed()
@@ -110,6 +110,13 @@ void AThirdPersonMPProjectile::OnProjectileImpact(UPrimitiveComponent* HitCompon
 	}
 	*/
 
+	// INFO: Skip Sphere Trace if the projectile is a bouncing projectile and still has bounces to go
+	if (ProjectileType == EProjectileType::Bouncing && BounceCount > 0)
+	{
+		BounceCount--;
+		return;
+	}
+	
 	// INFO: Create Sphere Trace to detect any actors within the explosion radius
 	TArray<FHitResult> hitResults;
 	FVector startLocation = GetActorLocation();
@@ -165,5 +172,80 @@ void AThirdPersonMPProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AThirdPersonMPProjectile::SetupStraightProjectile() const
+{
+	ProjectileMovementComponent->InitialSpeed = 1500.0f;
+	ProjectileMovementComponent->MaxSpeed = 1500.0f;
+	ProjectileMovementComponent->Velocity = GetActorForwardVector() * ProjectileMovementComponent->InitialSpeed;
+	ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
+}
+
+void AThirdPersonMPProjectile::SetupHomingProjectile() const
+{
+	// INFO: Create Sphere Trace to detect any actors within the homing radius
+	TArray<FHitResult> hitResults;
+	FVector startLocation = GetActorLocation();
+	FVector endLocation = startLocation;
+
+	// INFO: We only want to detect pawns
+	FCollisionObjectQueryParams objectQueryParams  = FCollisionObjectQueryParams();
+	objectQueryParams.AddObjectTypesToQuery(ECC_Pawn);
+
+	// INFO: Create a sphere collision shape with a radius of ExplosionRadius
+	FCollisionShape collisionShape = FCollisionShape::MakeSphere(HomingRadius);
+
+	// INFO: Has a valid target been found
+	bool bTargetFound = false;
+    	
+	if (GetWorld()->SweepMultiByObjectType(hitResults, startLocation, endLocation, FQuat::Identity,objectQueryParams, collisionShape))
+	{
+		for (FHitResult hitResult : hitResults)
+		{
+			if (hitResult.GetActor() !=	this->GetOwner())
+			{
+				ProjectileMovementComponent->InitialSpeed = 1500.0f;
+				ProjectileMovementComponent->MaxSpeed = 1500.0f;
+				ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
+				ProjectileMovementComponent->bIsHomingProjectile = true;
+				ProjectileMovementComponent->HomingAccelerationMagnitude = 1500.0f;
+				ProjectileMovementComponent->HomingTargetComponent = hitResult.GetActor()->GetRootComponent();
+				bTargetFound = true;
+				break;
+			}
+		}
+	}
+
+	// INFO: Performs straight projectile behaviour if no target is found
+	if (!bTargetFound)
+	{
+		SetupStraightProjectile();
+	}
+
+	// INFO: Debug the Sphere Sweep if Debug Mode is enabled
+	if (bDebugMode)
+	{
+		FVector sphereCentre = ((endLocation - startLocation) / 2) + startLocation;
+		DrawDebugSphere(GetWorld(), sphereCentre, collisionShape.GetSphereRadius(), 12, FColor::Green, false, 2.0f);
+	}   
+}
+
+void AThirdPersonMPProjectile::SetupBouncingProjectile() const
+{
+	ProjectileMovementComponent->InitialSpeed = 2000.0f;
+	ProjectileMovementComponent->MaxSpeed = 2000.0f;
+	ProjectileMovementComponent->Velocity = GetActorForwardVector() * ProjectileMovementComponent->InitialSpeed;
+	ProjectileMovementComponent->ProjectileGravityScale = 1.0f;
+	ProjectileMovementComponent->bShouldBounce = true;
+	ProjectileMovementComponent->Bounciness = 1.0f;
+}
+
+void AThirdPersonMPProjectile::SetupArcingProjectile() const
+{
+	ProjectileMovementComponent->InitialSpeed = 1500.0f;
+	ProjectileMovementComponent->MaxSpeed = 1500.0f;
+	ProjectileMovementComponent->Velocity = ((GetActorUpVector() - GetActorForwardVector()) / 2 + GetActorForwardVector()) * ProjectileMovementComponent->InitialSpeed;
+	ProjectileMovementComponent->ProjectileGravityScale = 1.0f;
 }
 
