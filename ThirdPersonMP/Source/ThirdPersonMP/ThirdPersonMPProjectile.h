@@ -56,7 +56,7 @@ public:
 	bool bDebugMode;
 
 	// INFO: Projectile Type
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Projectile")
+	UPROPERTY(Replicated, VisibleAnywhere, BlueprintReadOnly, Category = "Projectile")
 	TEnumAsByte<EProjectileType> ProjectileType;
 
 	// INFO: Radius of the homing projectile
@@ -87,6 +87,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// INFO: Property Replication Function
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	
 private:
 	void SetupStraightProjectile() const;
 	void SetupHomingProjectile() const;

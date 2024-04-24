@@ -8,6 +8,7 @@
 #include "GameFramework/DamageType.h"
 #include "Particles/ParticleSystem.h"
 #include "Kismet/GameplayStatics.h"
+#include "Net/UnrealNetwork.h"
 #include "UObject/ConstructorHelpers.h"
 
 // Sets default values
@@ -58,7 +59,7 @@ AThirdPersonMPProjectile::AThirdPersonMPProjectile()
 
 	// INFO: Initialize Variables
     DamageType = UDamageType::StaticClass();
-    Damage = 10.0f;
+    Damage = 100.0f;
     ExplosionRadius = 500.0f;
     bDebugMode = true;
     HomingRadius = 1000.0f;
@@ -70,8 +71,13 @@ void AThirdPersonMPProjectile::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// INFO: Randomize the Projectiles' Type
-	RandomizeProjectileType();
+	// INFO: Only the server should randomize the projectile type, clients will receive the replicated value
+	if (GetLocalRole() == ROLE_Authority)
+	{
+		// INFO: Randomize the Projectiles' Type
+		//RandomizeProjectileType();
+		ProjectileType = EProjectileType::Arcing;
+	}
 	
 	// INFO: Different Projectile behaviour based on the Projectile Type
     switch (ProjectileType)
@@ -172,6 +178,15 @@ void AThirdPersonMPProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AThirdPersonMPProjectile::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	// INFO: The super needs to be called, otherwise the base class properties won't be replicated
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	// INFO: Replicate projectile type
+	DOREPLIFETIME(AThirdPersonMPProjectile, ProjectileType);
 }
 
 void AThirdPersonMPProjectile::SetupStraightProjectile() const

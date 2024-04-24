@@ -67,7 +67,13 @@
             "b:\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\public\\net\\unrealnetwork.h",
             "b:\\epic games\\ue_5.3\\engine\\source\\runtime\\net\\core\\public\\net\\core\\propertyconditions\\propertyconditions.h",
             "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\source\\thirdpersonmp\\thirdpersonmpprojectile.h",
-            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\unrealeditor\\inc\\thirdpersonmp\\uht\\thirdpersonmpprojectile.generated.h"
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\unrealeditor\\inc\\thirdpersonmp\\uht\\thirdpersonmpprojectile.generated.h",
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\source\\thirdpersonmp\\thirdpersonmpgamemode.h",
+            "b:\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\gamemodebase.h",
+            "b:\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
+            "b:\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\serverstatreplicator.generated.h",
+            "b:\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamemodebase.generated.h",
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\unrealeditor\\inc\\thirdpersonmp\\uht\\thirdpersonmpgamemode.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

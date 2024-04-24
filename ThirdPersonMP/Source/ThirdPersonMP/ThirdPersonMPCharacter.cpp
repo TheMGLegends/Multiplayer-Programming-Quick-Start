@@ -13,6 +13,7 @@
 #include "Net/UnrealNetwork.h"
 #include "Engine/Engine.h"
 #include "ThirdPersonMPProjectile.h"
+#include "ThirdPersonMPGameMode.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -75,6 +76,9 @@ void AThirdPersonMPCharacter::GetLifetimeReplicatedProps(TArray<FLifetimePropert
 
 	// INFO: Replicate current health
 	DOREPLIFETIME(AThirdPersonMPCharacter, CurrentHealth);
+
+	// INFO: Replicate starting transform
+	DOREPLIFETIME(AThirdPersonMPCharacter, StartingTransform);
 }
 
 void AThirdPersonMPCharacter::SetCurrentHealth(float healthValue)
@@ -92,6 +96,15 @@ float AThirdPersonMPCharacter::TakeDamage(float DamageAmount, FDamageEvent const
 {
 	float damageApplied = CurrentHealth - DamageAmount;
 	SetCurrentHealth(damageApplied);
+
+	if (CurrentHealth <= 0)
+	{
+		if (AThirdPersonMPGameMode* GameMode = GetWorld()->GetAuthGameMode<AThirdPersonMPGameMode>())
+		{
+			GameMode->Respawn(GetController(), this, StartingTransform);
+		}
+	}
+	
 	return damageApplied;
 }
 
@@ -108,6 +121,9 @@ void AThirdPersonMPCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+
+	// INFO: Initialize starting transform
+	StartingTransform = GetActorTransform();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -165,6 +181,7 @@ void AThirdPersonMPCharacter::OnHealthUpdate()
 	}
 
 	// INFO: All Machines Functionality
+	
 }
 
 void AThirdPersonMPCharacter::StartFire()

@@ -33,7 +33,13 @@ private: \
 	friend struct Z_Construct_UClass_AThirdPersonMPProjectile_Statics; \
 public: \
 	DECLARE_CLASS(AThirdPersonMPProjectile, AActor, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/ThirdPersonMP"), NO_API) \
-	DECLARE_SERIALIZER(AThirdPersonMPProjectile)
+	DECLARE_SERIALIZER(AThirdPersonMPProjectile) \
+	enum class ENetFields_Private : uint16 \
+	{ \
+		NETFIELD_REP_START=(uint16)((int32)Super::ENetFields_Private::NETFIELD_REP_END + (int32)1), \
+		ProjectileType=NETFIELD_REP_START, \
+		NETFIELD_REP_END=ProjectileType	}; \
+	NO_API virtual void ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const override;
 
 
 #define FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_23_ENHANCED_CONSTRUCTORS \

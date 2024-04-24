@@ -416,7 +416,7 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPProjectile() {}
 #endif
 	};
 #endif
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_ProjectileType = { "ProjectileType", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AThirdPersonMPProjectile, ProjectileType), Z_Construct_UEnum_ThirdPersonMP_EProjectileType, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_ProjectileType_MetaData), Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_ProjectileType_MetaData) }; // 3816828394
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_ProjectileType = { "ProjectileType", nullptr, (EPropertyFlags)0x0010000000020035, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AThirdPersonMPProjectile, ProjectileType), Z_Construct_UEnum_ThirdPersonMP_EProjectileType, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_ProjectileType_MetaData), Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_ProjectileType_MetaData) }; // 3816828394
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AThirdPersonMPProjectile_Statics::NewProp_HomingRadius_MetaData[] = {
 		{ "Category", "Projectile" },
@@ -487,6 +487,16 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPProjectile() {}
 	{
 		return AThirdPersonMPProjectile::StaticClass();
 	}
+
+	void AThirdPersonMPProjectile::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
+	{
+		static const FName Name_ProjectileType(TEXT("ProjectileType"));
+
+		const bool bIsValid = true
+			&& Name_ProjectileType == ClassReps[(int32)ENetFields_Private::ProjectileType].Property->GetFName();
+
+		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in AThirdPersonMPProjectile"));
+	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AThirdPersonMPProjectile);
 	AThirdPersonMPProjectile::~AThirdPersonMPProjectile() {}
 	struct Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics
@@ -498,9 +508,9 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPProjectile() {}
 		{ EProjectileType_StaticEnum, TEXT("EProjectileType"), &Z_Registration_Info_UEnum_EProjectileType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3816828394U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AThirdPersonMPProjectile, AThirdPersonMPProjectile::StaticClass, TEXT("AThirdPersonMPProjectile"), &Z_Registration_Info_UClass_AThirdPersonMPProjectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AThirdPersonMPProjectile), 1145308432U) },
+		{ Z_Construct_UClass_AThirdPersonMPProjectile, AThirdPersonMPProjectile::StaticClass, TEXT("AThirdPersonMPProjectile"), &Z_Registration_Info_UClass_AThirdPersonMPProjectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AThirdPersonMPProjectile), 453893610U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_2939182356(TEXT("/Script/ThirdPersonMP"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_3560928442(TEXT("/Script/ThirdPersonMP"),
 		Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPProjectile_h_Statics::EnumInfo));

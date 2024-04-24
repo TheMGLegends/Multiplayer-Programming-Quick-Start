@@ -11,6 +11,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 // Cross Module References
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	ENGINE_API UClass* Z_Construct_UClass_AController_NoRegister();
@@ -452,6 +453,10 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentHealth;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_StartingTransform_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_StartingTransform;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ProjectileClass_MetaData[];
 #endif
 		static const UECodeGen_Private::FClassPropertyParams NewProp_ProjectileClass;
@@ -586,6 +591,12 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_CurrentHealth = { "CurrentHealth", "OnRep_CurrentHealth", (EPropertyFlags)0x0020080100000020, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AThirdPersonMPCharacter, CurrentHealth), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_CurrentHealth_MetaData), Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_CurrentHealth_MetaData) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_StartingTransform_MetaData[] = {
+		{ "ModuleRelativePath", "ThirdPersonMPCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_StartingTransform = { "StartingTransform", nullptr, (EPropertyFlags)0x0020080000000020, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AThirdPersonMPCharacter, StartingTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_StartingTransform_MetaData), Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_StartingTransform_MetaData) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_ProjectileClass_MetaData[] = {
 		{ "Category", "Gameplay|Projectile" },
 		{ "ModuleRelativePath", "ThirdPersonMPCharacter.h" },
@@ -614,6 +625,7 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_LookAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_MaxHealth,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_CurrentHealth,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_StartingTransform,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_ProjectileClass,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_FireRate,
 	};
@@ -652,9 +664,11 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 	void AThirdPersonMPCharacter::ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const
 	{
 		static const FName Name_CurrentHealth(TEXT("CurrentHealth"));
+		static const FName Name_StartingTransform(TEXT("StartingTransform"));
 
 		const bool bIsValid = true
-			&& Name_CurrentHealth == ClassReps[(int32)ENetFields_Private::CurrentHealth].Property->GetFName();
+			&& Name_CurrentHealth == ClassReps[(int32)ENetFields_Private::CurrentHealth].Property->GetFName()
+			&& Name_StartingTransform == ClassReps[(int32)ENetFields_Private::StartingTransform].Property->GetFName();
 
 		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in AThirdPersonMPCharacter"));
 	}
@@ -665,9 +679,9 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AThirdPersonMPCharacter, AThirdPersonMPCharacter::StaticClass, TEXT("AThirdPersonMPCharacter"), &Z_Registration_Info_UClass_AThirdPersonMPCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AThirdPersonMPCharacter), 1237886371U) },
+		{ Z_Construct_UClass_AThirdPersonMPCharacter, AThirdPersonMPCharacter::StaticClass, TEXT("AThirdPersonMPCharacter"), &Z_Registration_Info_UClass_AThirdPersonMPCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AThirdPersonMPCharacter), 1779744987U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_3809238375(TEXT("/Script/ThirdPersonMP"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_2232448393(TEXT("/Script/ThirdPersonMP"),
 		Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

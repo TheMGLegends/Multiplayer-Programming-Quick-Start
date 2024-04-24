@@ -13,6 +13,9 @@ class AThirdPersonMPGameMode : public AGameModeBase
 
 public:
 	AThirdPersonMPGameMode();
+
+	UFUNCTION(Server, Reliable)
+	void Respawn(AController* Controller, ACharacter* Character, const FTransform SpawnTransform);
 };
 
 

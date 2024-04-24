@@ -74,6 +74,9 @@ protected:
 	UPROPERTY(ReplicatedUsing = OnRep_CurrentHealth)
 	float CurrentHealth;
 
+	UPROPERTY(Replicated)
+	FTransform StartingTransform;
+
 	// INFO: This function is called when the CurrentHealth property is replicated
 	UFUNCTION()
 	void OnRep_CurrentHealth();
