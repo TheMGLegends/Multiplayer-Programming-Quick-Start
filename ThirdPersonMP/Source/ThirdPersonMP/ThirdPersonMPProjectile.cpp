@@ -75,8 +75,7 @@ void AThirdPersonMPProjectile::BeginPlay()
 	if (GetLocalRole() == ROLE_Authority)
 	{
 		// INFO: Randomize the Projectiles' Type
-		//RandomizeProjectileType();
-		ProjectileType = EProjectileType::Arcing;
+		RandomizeProjectileType();
 	}
 	
 	// INFO: Different Projectile behaviour based on the Projectile Type
@@ -262,5 +261,6 @@ void AThirdPersonMPProjectile::SetupArcingProjectile() const
 	ProjectileMovementComponent->MaxSpeed = 1500.0f;
 	ProjectileMovementComponent->Velocity = ((GetActorUpVector() - GetActorForwardVector()) / 2 + GetActorForwardVector()) * ProjectileMovementComponent->InitialSpeed;
 	ProjectileMovementComponent->ProjectileGravityScale = 1.0f;
+	ProjectileMovementComponent->bRotationFollowsVelocity = false;
 }
 
