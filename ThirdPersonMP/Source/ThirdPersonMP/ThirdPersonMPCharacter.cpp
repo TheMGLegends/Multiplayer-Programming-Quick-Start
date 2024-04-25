@@ -98,15 +98,6 @@ float AThirdPersonMPCharacter::TakeDamage(float DamageAmount, FDamageEvent const
 {
 	float damageApplied = CurrentHealth - DamageAmount;
 	SetCurrentHealth(damageApplied);
-
-	if (CurrentHealth <= 0)
-	{
-		if (AThirdPersonMPGameMode* GameMode = GetWorld()->GetAuthGameMode<AThirdPersonMPGameMode>())
-		{
-			GameMode->Respawn(GetController(), this, StartingTransform);
-		}
-	}
-	
 	return damageApplied;
 }
 
@@ -143,6 +134,14 @@ void AThirdPersonMPCharacter::BeginPlay()
 				Cast<UPlayerHUD>(HUD)->Character = this;
 			}
 		}
+	}
+}
+
+void AThirdPersonMPCharacter::RespawnDelay()
+{
+	if (AThirdPersonMPGameMode* GameMode = GetWorld()->GetAuthGameMode<AThirdPersonMPGameMode>())
+	{
+		GameMode->Respawn(GetController(), this, StartingTransform);
 	}
 }
 
@@ -199,6 +198,13 @@ void AThirdPersonMPCharacter::OnHealthUpdate()
 	{
 		FString healthMessage = FString::Printf(TEXT("%s now has %f health remaining"), *GetFName().ToString(), CurrentHealth);
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, healthMessage);
+
+		if (CurrentHealth <= 0)
+		{
+			// INFO: Respawn the player after some delay to allow clients to remove their HUDs
+			FTimerHandle RespawnTimer;
+			GetWorld()->GetTimerManager().SetTimer(RespawnTimer, this, &AThirdPersonMPCharacter::RespawnDelay, 0.1f, false);
+		}
 	}
 
 	// INFO: All Machines Functionality

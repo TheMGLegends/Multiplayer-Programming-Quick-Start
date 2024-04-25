@@ -132,6 +132,9 @@ protected:
 	// To add mapping context
 	virtual void BeginPlay();
 
+private:
+	void RespawnDelay();
+
 public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
