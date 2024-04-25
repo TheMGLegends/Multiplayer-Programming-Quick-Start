@@ -59,7 +59,7 @@ AThirdPersonMPProjectile::AThirdPersonMPProjectile()
 
 	// INFO: Initialize Variables
     DamageType = UDamageType::StaticClass();
-    Damage = 100.0f;
+    Damage = 50.0f;
     ExplosionRadius = 500.0f;
     bDebugMode = true;
     HomingRadius = 1000.0f;
@@ -108,13 +108,6 @@ void AThirdPersonMPProjectile::Destroyed()
 
 void AThirdPersonMPProjectile::OnProjectileImpact(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	/*
-	if (OtherActor)
-	{
-		UGameplayStatics::ApplyPointDamage(OtherActor, Damage, NormalImpulse, Hit, GetInstigator()->Controller, this, DamageType);
-	}
-	*/
-
 	// INFO: Skip Sphere Trace if the projectile is a bouncing projectile and still has bounces to go
 	if (ProjectileType == EProjectileType::Bouncing && BounceCount > 0)
 	{

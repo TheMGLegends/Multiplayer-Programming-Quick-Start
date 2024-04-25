@@ -23,6 +23,7 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 	THIRDPERSONMP_API UClass* Z_Construct_UClass_AThirdPersonMPCharacter();
 	THIRDPERSONMP_API UClass* Z_Construct_UClass_AThirdPersonMPCharacter_NoRegister();
 	THIRDPERSONMP_API UClass* Z_Construct_UClass_AThirdPersonMPProjectile_NoRegister();
+	UMG_API UClass* Z_Construct_UClass_UUserWidget_NoRegister();
 	UPackage* Z_Construct_UPackage__Script_ThirdPersonMP();
 // End Cross Module References
 	DEFINE_FUNCTION(AThirdPersonMPCharacter::execHandleFire)
@@ -445,6 +446,10 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_LookAction;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HUDAsset_MetaData[];
+#endif
+		static const UECodeGen_Private::FClassPropertyParams NewProp_HUDAsset;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MaxHealth_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxHealth;
@@ -456,6 +461,10 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_StartingTransform_MetaData[];
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_StartingTransform;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HUD_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_HUD;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ProjectileClass_MetaData[];
 #endif
@@ -578,6 +587,19 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_LookAction = { "LookAction", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AThirdPersonMPCharacter, LookAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_LookAction_MetaData), Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_LookAction_MetaData) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_HUDAsset_MetaData[] = {
+		{ "Category", "Widgets" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// INFO: HUD Asset\n" },
+#endif
+		{ "ModuleRelativePath", "ThirdPersonMPCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "INFO: HUD Asset" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_HUDAsset = { "HUDAsset", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AThirdPersonMPCharacter, HUDAsset), Z_Construct_UClass_UClass, Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_HUDAsset_MetaData), Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_HUDAsset_MetaData) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_MaxHealth_MetaData[] = {
 		{ "Category", "Health" },
 		{ "ModuleRelativePath", "ThirdPersonMPCharacter.h" },
@@ -596,6 +618,20 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_StartingTransform = { "StartingTransform", nullptr, (EPropertyFlags)0x0020080000000020, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AThirdPersonMPCharacter, StartingTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_StartingTransform_MetaData), Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_StartingTransform_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_HUD_MetaData[] = {
+		{ "Category", "Widgets" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// INFO: HUD Overlay\n" },
+#endif
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "ThirdPersonMPCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "INFO: HUD Overlay" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_HUD = { "HUD", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AThirdPersonMPCharacter, HUD), Z_Construct_UClass_UUserWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_HUD_MetaData), Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_HUD_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_ProjectileClass_MetaData[] = {
 		{ "Category", "Gameplay|Projectile" },
@@ -623,9 +659,11 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_JumpAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_MoveAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_LookAction,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_HUDAsset,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_MaxHealth,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_CurrentHealth,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_StartingTransform,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_HUD,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_ProjectileClass,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AThirdPersonMPCharacter_Statics::NewProp_FireRate,
 	};
@@ -674,15 +712,15 @@ void EmptyLinkFunctionForGeneratedCodeThirdPersonMPCharacter() {}
 	}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(AThirdPersonMPCharacter);
 	AThirdPersonMPCharacter::~AThirdPersonMPCharacter() {}
-	struct Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics
+	struct Z_CompiledInDeferFile_FID_Users_5CINCM67_Downloads_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics
 	{
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
-	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AThirdPersonMPCharacter, AThirdPersonMPCharacter::StaticClass, TEXT("AThirdPersonMPCharacter"), &Z_Registration_Info_UClass_AThirdPersonMPCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AThirdPersonMPCharacter), 1779744987U) },
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_5CINCM67_Downloads_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_AThirdPersonMPCharacter, AThirdPersonMPCharacter::StaticClass, TEXT("AThirdPersonMPCharacter"), &Z_Registration_Info_UClass_AThirdPersonMPCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AThirdPersonMPCharacter), 3506526407U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_2232448393(TEXT("/Script/ThirdPersonMP"),
-		Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_University_Projects_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_5CINCM67_Downloads_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_2279414872(TEXT("/Script/ThirdPersonMP"),
+		Z_CompiledInDeferFile_FID_Users_5CINCM67_Downloads_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_5CINCM67_Downloads_Multiplayer_Programming_Quick_Start_ThirdPersonMP_Source_ThirdPersonMP_ThirdPersonMPCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

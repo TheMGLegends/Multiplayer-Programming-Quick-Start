@@ -10,10 +10,12 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "PlayerHUD.h"
 #include "Net/UnrealNetwork.h"
 #include "Engine/Engine.h"
 #include "ThirdPersonMPProjectile.h"
 #include "ThirdPersonMPGameMode.h"
+#include "Blueprint/UserWidget.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -124,6 +126,24 @@ void AThirdPersonMPCharacter::BeginPlay()
 
 	// INFO: Initialize starting transform
 	StartingTransform = GetActorTransform();
+
+	// INFO: Create and assign HUD asset only on local clients
+	if (IsLocallyControlled())
+	{
+		if (HUDAsset)
+		{
+			HUD = CreateWidget<UUserWidget>(Cast<APlayerController>(GetController()), HUDAsset);
+
+			if (HUD)
+			{
+				HUD->AddToViewport();
+				HUD->SetVisibility(ESlateVisibility::Visible);
+
+				// INFO: Assign the owning character to the HUD
+				Cast<UPlayerHUD>(HUD)->Character = this;
+			}
+		}
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -170,6 +190,7 @@ void AThirdPersonMPCharacter::OnHealthUpdate()
 		{
 			FString deathMessage = FString::Printf(TEXT("You have died!"));
 			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, deathMessage);
+			HUD->RemoveFromParent();
 		}
 	}
 
@@ -181,7 +202,6 @@ void AThirdPersonMPCharacter::OnHealthUpdate()
 	}
 
 	// INFO: All Machines Functionality
-	
 }
 
 void AThirdPersonMPCharacter::StartFire()
@@ -247,3 +267,4 @@ void AThirdPersonMPCharacter::Look(const FInputActionValue& Value)
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
 }
+

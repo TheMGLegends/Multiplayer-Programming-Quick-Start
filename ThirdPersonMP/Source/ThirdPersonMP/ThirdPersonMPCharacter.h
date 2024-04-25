@@ -66,6 +66,11 @@ public:
 	// INFO: Overriden Take Damage Event
 	UFUNCTION(BlueprintCallable, Category = "Health")
 	float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+
+public:
+	// INFO: HUD Asset
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	TSubclassOf<class UUserWidget> HUDAsset;
 	
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Health")
@@ -76,6 +81,10 @@ protected:
 
 	UPROPERTY(Replicated)
 	FTransform StartingTransform;
+
+	// INFO: HUD Overlay
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widgets")
+	UUserWidget* HUD;
 
 	// INFO: This function is called when the CurrentHealth property is replicated
 	UFUNCTION()
@@ -115,7 +124,6 @@ protected:
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
-			
 
 protected:
 	// APawn interface
