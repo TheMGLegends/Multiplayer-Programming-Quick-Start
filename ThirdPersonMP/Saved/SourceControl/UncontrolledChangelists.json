@@ -5,11 +5,16 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
+				"B:/University Projects/Multiplayer-Programming-Quick-Start/ThirdPersonMP/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"B:/University Projects/Multiplayer-Programming-Quick-Start/ThirdPersonMP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/7/V0/S3XZY6PC8IM64O4Q07TPIL.uasset",
+				"B:/University Projects/Multiplayer-Programming-Quick-Start/ThirdPersonMP/Content/DamageTypes/BP_BaseProjectile_DT.uasset",
+				"B:/University Projects/Multiplayer-Programming-Quick-Start/ThirdPersonMP/Content/DamageTypes/BP_StraightProjectile_DT_Child.uasset",
+				"B:/University Projects/Multiplayer-Programming-Quick-Start/ThirdPersonMP/Content/DamageTypes/BP_HomingProjectile_DT_Child.uasset",
+				"B:/University Projects/Multiplayer-Programming-Quick-Start/ThirdPersonMP/Content/DamageTypes/BP_BouncingProjectile_DT_Child.uasset",
+				"B:/University Projects/Multiplayer-Programming-Quick-Start/ThirdPersonMP/Content/DamageTypes/BP_ArcingProjectile_DT_Child.uasset",
 				"C:/Users/5CINCM67/Downloads/Multiplayer-Programming-Quick-Start/ThirdPersonMP/Content/ThirdPerson/Blueprints/BP_ThirdPersonCharacter.uasset",
 				"C:/Users/5CINCM67/Downloads/Multiplayer-Programming-Quick-Start/ThirdPersonMP/Content/UI/BP_PlayerHUD.uasset",
-				"C:/Users/5CINCM67/Downloads/Multiplayer-Programming-Quick-Start/ThirdPersonMP/Content/UI/HUD.uasset",
-				"B:/University Projects/Multiplayer-Programming-Quick-Start/ThirdPersonMP/Content/StarterContent/Architecture/Floor_400x400.uasset",
-				"B:/University Projects/Multiplayer-Programming-Quick-Start/ThirdPersonMP/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/7/V0/S3XZY6PC8IM64O4Q07TPIL.uasset"
+				"C:/Users/5CINCM67/Downloads/Multiplayer-Programming-Quick-Start/ThirdPersonMP/Content/UI/HUD.uasset"
 			]
 		}
 	]

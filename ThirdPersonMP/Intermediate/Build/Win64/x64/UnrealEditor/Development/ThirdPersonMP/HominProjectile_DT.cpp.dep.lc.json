@@ -1,0 +1,17 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\source\\thirdpersonmp\\hominprojectile_dt.cpp",
+        "ProvidedModule": "",
+        "PCH": "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\x64\\thirdpersonmpeditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\thirdpersonmp\\definitions.thirdpersonmp.h",
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\source\\thirdpersonmp\\homingprojectile_dt.h",
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\source\\thirdpersonmp\\baseprojectile_dt.h",
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\unrealeditor\\inc\\thirdpersonmp\\uht\\baseprojectile_dt.generated.h",
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\unrealeditor\\inc\\thirdpersonmp\\uht\\homingprojectile_dt.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

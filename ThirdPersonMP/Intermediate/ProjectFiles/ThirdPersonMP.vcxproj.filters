@@ -33,10 +33,40 @@
     <Filter Include="Source\ThirdPersonMP">
       <UniqueIdentifier>{F2105D61-F0A8-3E7A-A793-718486A549F8}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\ThirdPersonMP\ArcingProjectile_DT.cpp">
+      <Filter>Source\ThirdPersonMP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ThirdPersonMP\ArcingProjectile_DT.h">
+      <Filter>Source\ThirdPersonMP</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ThirdPersonMP\BaseProjectile_DT.cpp">
+      <Filter>Source\ThirdPersonMP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ThirdPersonMP\BaseProjectile_DT.h">
+      <Filter>Source\ThirdPersonMP</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ThirdPersonMP\BouncingProjectile_DT.cpp">
+      <Filter>Source\ThirdPersonMP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ThirdPersonMP\BouncingProjectile_DT.h">
+      <Filter>Source\ThirdPersonMP</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ThirdPersonMP\HomingProjectile_DT.cpp">
+      <Filter>Source\ThirdPersonMP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ThirdPersonMP\HomingProjectile_DT.h">
+      <Filter>Source\ThirdPersonMP</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\ThirdPersonMP\PlayerHUD.cpp">
       <Filter>Source\ThirdPersonMP</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\ThirdPersonMP\PlayerHUD.h">
+      <Filter>Source\ThirdPersonMP</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ThirdPersonMP\StraightProjectile_DT.cpp">
+      <Filter>Source\ThirdPersonMP</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ThirdPersonMP\StraightProjectile_DT.h">
       <Filter>Source\ThirdPersonMP</Filter>
     </ClInclude>
     <None Include="..\..\Source\ThirdPersonMP\ThirdPersonMP.Build.cs">

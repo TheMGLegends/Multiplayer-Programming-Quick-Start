@@ -16,6 +16,8 @@
             "b:\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\rootmotionsource.generated.h",
             "b:\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\character.generated.h",
             "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\unrealeditor\\inc\\thirdpersonmp\\uht\\thirdpersonmpcharacter.generated.h",
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\source\\thirdpersonmp\\baseprojectile_dt.h",
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\unrealeditor\\inc\\thirdpersonmp\\uht\\baseprojectile_dt.generated.h",
             "b:\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\camera\\cameracomponent.h",
             "b:\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\cameracomponent.generated.h",
             "b:\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\components\\capsulecomponent.h",
@@ -102,7 +104,9 @@
             "b:\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\engine\\serverstatreplicator.h",
             "b:\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\serverstatreplicator.generated.h",
             "b:\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\gamemodebase.generated.h",
-            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\unrealeditor\\inc\\thirdpersonmp\\uht\\thirdpersonmpgamemode.generated.h"
+            "b:\\university projects\\multiplayer-programming-quick-start\\thirdpersonmp\\intermediate\\build\\win64\\unrealeditor\\inc\\thirdpersonmp\\uht\\thirdpersonmpgamemode.generated.h",
+            "b:\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\engine\\damageevents.h",
+            "b:\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\damageevents.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

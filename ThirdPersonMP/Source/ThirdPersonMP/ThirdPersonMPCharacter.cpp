@@ -1,6 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "ThirdPersonMPCharacter.h"
+
+#include "BaseProjectile_DT.h"
 #include "Engine/LocalPlayer.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -16,6 +18,7 @@
 #include "ThirdPersonMPProjectile.h"
 #include "ThirdPersonMPGameMode.h"
 #include "Blueprint/UserWidget.h"
+#include "Engine/DamageEvents.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -98,6 +101,13 @@ float AThirdPersonMPCharacter::TakeDamage(float DamageAmount, FDamageEvent const
 {
 	float damageApplied = CurrentHealth - DamageAmount;
 	SetCurrentHealth(damageApplied);
+
+	// INFO: Debug only on server side
+	if (GetLocalRole() == ROLE_Authority)
+	{
+		DamageEvent.DamageTypeClass->GetDefaultObject<UBaseProjectile_DT>()->PrintDamageMessage();
+	}
+	
 	return damageApplied;
 }
 

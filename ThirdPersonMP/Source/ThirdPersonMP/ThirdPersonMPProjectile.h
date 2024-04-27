@@ -91,9 +91,9 @@ public:
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	
 private:
-	void SetupStraightProjectile() const;
-	void SetupHomingProjectile() const;
-	void SetupBouncingProjectile() const;
-	void SetupArcingProjectile() const;
+	void SetupStraightProjectile();
+	void SetupHomingProjectile();
+	void SetupBouncingProjectile();
+	void SetupArcingProjectile();
 
 };

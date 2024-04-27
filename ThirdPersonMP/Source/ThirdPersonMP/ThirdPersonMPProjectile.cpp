@@ -2,6 +2,11 @@
 
 
 #include "ThirdPersonMPProjectile.h"
+
+#include "ArcingProjectile_DT.h"
+#include "BouncingProjectile_DT.h"
+#include "HomingProjectile_DT.h"
+#include "StraightProjectile_DT.h"
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
@@ -58,8 +63,7 @@ AThirdPersonMPProjectile::AThirdPersonMPProjectile()
 	ProjectileMovementComponent->bRotationFollowsVelocity = true;
 
 	// INFO: Initialize Variables
-    DamageType = UDamageType::StaticClass();
-    Damage = 50.0f;
+    Damage = 5.0f;
     ExplosionRadius = 500.0f;
     bDebugMode = true;
     HomingRadius = 1000.0f;
@@ -129,9 +133,10 @@ void AThirdPersonMPProjectile::OnProjectileImpact(UPrimitiveComponent* HitCompon
 
 	// INFO: Initialize a Set to store already hit actors
 	TSet<AActor*> hitActors;
-	
+
 	if (GetWorld()->SweepMultiByObjectType(hitResults, startLocation, endLocation, FQuat::Identity,objectQueryParams, collisionShape))
 	{
+		
 		for (FHitResult hitResult : hitResults)
 		{
 			AActor* hitActor = hitResult.GetActor();
@@ -181,16 +186,20 @@ void AThirdPersonMPProjectile::GetLifetimeReplicatedProps(TArray<FLifetimeProper
 	DOREPLIFETIME(AThirdPersonMPProjectile, ProjectileType);
 }
 
-void AThirdPersonMPProjectile::SetupStraightProjectile() const
+void AThirdPersonMPProjectile::SetupStraightProjectile()
 {
+	DamageType = UStraightProjectile_DT::StaticClass();
+	
 	ProjectileMovementComponent->InitialSpeed = 1500.0f;
 	ProjectileMovementComponent->MaxSpeed = 1500.0f;
 	ProjectileMovementComponent->Velocity = GetActorForwardVector() * ProjectileMovementComponent->InitialSpeed;
 	ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
 }
 
-void AThirdPersonMPProjectile::SetupHomingProjectile() const
+void AThirdPersonMPProjectile::SetupHomingProjectile()
 {
+	DamageType = UHomingProjectile_DT::StaticClass();
+	
 	// INFO: Create Sphere Trace to detect any actors within the homing radius
 	TArray<FHitResult> hitResults;
 	FVector startLocation = GetActorLocation();
@@ -238,8 +247,10 @@ void AThirdPersonMPProjectile::SetupHomingProjectile() const
 	}   
 }
 
-void AThirdPersonMPProjectile::SetupBouncingProjectile() const
+void AThirdPersonMPProjectile::SetupBouncingProjectile()
 {
+	DamageType = UBouncingProjectile_DT::StaticClass();
+	
 	ProjectileMovementComponent->InitialSpeed = 2000.0f;
 	ProjectileMovementComponent->MaxSpeed = 2000.0f;
 	ProjectileMovementComponent->Velocity = GetActorForwardVector() * ProjectileMovementComponent->InitialSpeed;
@@ -248,8 +259,10 @@ void AThirdPersonMPProjectile::SetupBouncingProjectile() const
 	ProjectileMovementComponent->Bounciness = 1.0f;
 }
 
-void AThirdPersonMPProjectile::SetupArcingProjectile() const
+void AThirdPersonMPProjectile::SetupArcingProjectile()
 {
+	DamageType = UArcingProjectile_DT::StaticClass();
+	
 	ProjectileMovementComponent->InitialSpeed = 1500.0f;
 	ProjectileMovementComponent->MaxSpeed = 1500.0f;
 	ProjectileMovementComponent->Velocity = ((GetActorUpVector() - GetActorForwardVector()) / 2 + GetActorForwardVector()) * ProjectileMovementComponent->InitialSpeed;
